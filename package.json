@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "mocha test"
+  },
+  "devDependencies": {
+    "uglify-js": "2.*",
+    "mocha": "^1.21.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.0.19"
+  }
+}
