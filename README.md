@@ -148,8 +148,11 @@ docClient.getItem(params, pfunc);
 var params = {};
 params.TableName = "Houses";
 
+// Note: This is a query on the Key Schema of the table.  
+// For queries on seconday indexes, specify params.IndexName = "index-name"
+
 // use an array of Condition Objects for multiple conditions
-params.KeyCondition = [docClient.Condition("HouseId", "NOT_NULL"),
+params.KeyConditions = [docClient.Condition("HouseId", "NOT_NULL"),
                       docClient.Condition("YearBuilt", "GT", 2000)];
 
 // use a Condition Object for just a single condition
