@@ -25,6 +25,8 @@ describe("Testing Format Input", function() {
         it("with hash and hash-range keys", function() {
             request.params.RequestItems = {};
             request.params.RequestItems[gameTable] = {"ConsistentRead": "false",
+                                                      "ProjectionExpression": "#a",
+                                                      "ExpressionAttributeNames": {"#a": "GameId"},
                                                      "Keys": gameKeys};
             request.params.RequestItems[userTable] = {"AttributesToGet": ["UserId", "Friends"],
                                                      "Keys": userKeys};
@@ -32,6 +34,8 @@ describe("Testing Format Input", function() {
             var llRequestParams = {"RequestItems":
                                      {"Games":
                                         {"ConsistentRead": "false",
+                                         "ProjectionExpression": "#a",
+                                         "ExpressionAttributeNames": {"#a": "GameId"},
                                          "Keys": [{"GameId": {"N": "1"}},
                                                   {"GameId": {"N": "2"}}]},
                                       "Users":
