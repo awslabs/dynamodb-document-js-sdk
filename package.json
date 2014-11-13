@@ -3,9 +3,9 @@
   "description": "DynamoDB Document SDK for Javascript",
   "version": "1.0.0",
   "author": {
-      "name": "Amazon Web Services",
-      "email": "",
-      "url": "http://aws.amazon.com/"
+    "name": "Amazon Web Services",
+    "email": "",
+    "url": "http://aws.amazon.com/"
   },
   "homepage": "https://github.com/awslabs/dynamodb-document-js-sdk",
   "contributors": [
@@ -13,28 +13,37 @@
     "Loren Segal <lsegal@amazon.com>"
   ],
   "devDependencies": {
-    "uglify-js": "2.*",
-    "mocha": "^1.21.0"
+    "chai": "^1.10.0",
+    "mocha": "^1.21.0",
+    "uglify-js": "2.*"
   },
   "dependencies": {
     "aws-sdk": "^2.0.19"
   },
   "main": "lib/dynamodb-doc.js",
   "directories": {
-      "lib": "lib"
+    "lib": "lib"
   },
   "engines": {
-      "node": ">= 0.8.0"
+    "node": ">= 0.8.0"
   },
   "repository": {
-      "type" : "git",
-      "url": "git://github.com/awslabs/dynamodb-document-js-sdk"
+    "type": "git",
+    "url": "git://github.com/awslabs/dynamodb-document-js-sdk"
   },
-  "licenses": [{
+  "licenses": [
+    {
       "type": "Apache 2.0",
       "url": "https://github.com/awslabs/dynamodb-document-js-sdk/blob/master/LICENSE.txt"
-  }],
-  "keywords": ["dynamodb", "document", "js", "javascript", "sdk"],
+    }
+  ],
+  "keywords": [
+    "dynamodb",
+    "document",
+    "js",
+    "javascript",
+    "sdk"
+  ],
   "scripts": {
     "test": "mocha test"
   }

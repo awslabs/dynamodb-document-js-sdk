@@ -1,5 +1,6 @@
 "use strict";
 var assert = require("assert");
+var expect = require("chai").expect;
 var datatypes = require("../lib/datatypes").DynamoDBDatatype;
 var t = new datatypes();
 
@@ -49,7 +50,7 @@ describe("Testing DataTypes", function() {
             assert(testNumSet, "Did not successfully create a NumSet.");
         });
 
-        it("as a StrSet.", function() {
+        it("as a BinSet.", function() {
             testBinSet = t.createSet([new Buffer("10"), new Buffer("01")], "B");
             assert(testBinSet, "Did not successfully create a BinSet.");
         });
@@ -66,7 +67,7 @@ describe("Testing DataTypes", function() {
                     var modified_length = testStrSet.toArray().length;
                     assert.equal(initial_length, modified_length);
                 });
-                
+
                 it("with unique value.", function() {
                     var initial_length = testStrSet.toArray().length;
                     testStrSet.add("d");
@@ -95,4 +96,22 @@ describe("Testing DataTypes", function() {
 
     });
 
+    describe('Testing createSet #format', function () {
+        it("as a StringSet.", function() {
+            var stringSet = t.createSet(["a", "b", "c"], "S");
+            // nodejs built in assert deep equals does not do strict equality
+            expect(stringSet.format()).to.eql({SS : ["a", "b", "c"]});
+        });
+
+        it("as a NumSet.", function() {
+            var numberSet = t.createSet([1, 2, 3], "N");
+            // nodejs built in assert deep equals does not do strict equality
+            expect(numberSet.format()).to.eql({NS : ["1", "2", "3"]});
+        });
+
+        it("as a BinSet.", function() {
+            var binSet = t.createSet([new Buffer("hello"), new Buffer("world")], "B");
+            expect(binSet.format()).to.eql({BS : [new Buffer("hello"), new Buffer("world")]});
+        });
+    });
 });
