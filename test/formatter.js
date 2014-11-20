@@ -398,16 +398,27 @@ describe("Testing Format Output", function() {
         var mlResponseData = {};
         mlResponseData.Item = {"UserId":
                                  "raymolin",
-                                "Age":
-                                  21};
+                               "Age":
+                                  21,
+                               "Friends":
+                                  { "Gaming":
+                                      ["Abe", "Ally"]}};
 
         beforeEach(function() {
             response.data = {};
+            Array.prototype.notAnElement = function() {};
             response.data.Item = {"UserId": 
                                     {"S": "raymolin"},
                                   "Age":
-                                    {"N": "21"}};
+                                    {"N": "21"},
+                                  "Friends":
+                                    {"M": { "Gaming":
+                                              {"L": [{"S": "Abe"}, {"S": "Ally"}]}}}};
 
+        });
+
+        afterEach(function() {
+          delete Array.prototype.notAnElement;
         });
 
         it("with a simple response", function() {
