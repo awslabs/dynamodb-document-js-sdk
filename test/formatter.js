@@ -396,18 +396,27 @@ describe("Testing Format Output", function() {
     describe("on GetItem Output", function() {
         var response = {};
         var mlResponseData = {};
-        mlResponseData.Item = {"UserId":
-                                 "raymolin",
-                                "Age":
-                                  21};
 
         beforeEach(function() {
+            mlResponseData.Item = {"UserId":
+                                      "raymolin",
+                                   "Age":
+                                       21};
+
             response.data = {};
             response.data.Item = {"UserId": 
                                     {"S": "raymolin"},
                                   "Age":
                                     {"N": "21"}};
 
+            Array.prototype.notAnElement = function() {};
+        });
+
+        afterEach(function() {
+            if (mlResponseData.ConsumedCapacity) {
+                delete mlResponseData.ConsumedCapacity;
+            }
+            delete Array.prototype.notAnElement;
         });
 
         it("with a simple response", function() {
@@ -424,6 +433,18 @@ describe("Testing Format Output", function() {
             mlResponseData.ConsumedCapacity.TableName = "Users";
             mlResponseData.ConsumedCapacity.CapacityUnits = "10";
            
+            f.formatOutput(response);
+            assert.deepEqual(response.data, mlResponseData);
+        });
+
+        it("with Array prototype chain pollution", function() {
+            mlResponseData.Item.Friends = {Gaming: 
+                                            ["Abe", "Ally"]};
+            response.data.Item.Friends = {M: {
+                                            Gaming:
+                                                {L: [
+                                                    {S: "Abe"}, {S: "Ally"}]}}};
+
             f.formatOutput(response);
             assert.deepEqual(response.data, mlResponseData);
         });
