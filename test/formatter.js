@@ -65,7 +65,7 @@ describe("Testing Format Input", function() {
 
         it("formatInput on simple Hash Key", function() {
             request.params.Key = hashKey;
-            var llRequestParams = {"Key": 
+            var llRequestParams = {"Key":
                                     {"UserId":
                                       {"S": "raymolin"}},
                                    "TableName":
@@ -91,13 +91,13 @@ describe("Testing Format Input", function() {
 
     describe("on PutItem Input", function() {
         var request = {};
-        
+
         var basicItem = {"UserId"  : "raymolin",
                          "Age"     : 21,
                          "Coworkers" : new t.createSet(["vijayra", "hulisa"], "S") };
 
         var jsonItem = {"UserId"   : "raymolin",
-                        "ProfilePic": new Buffer("0101"), 
+                        "ProfilePic": new Buffer("0101"),
                         "Spouse"    : null,
                         "isMarried" : false,
                         "Relationships" : {"Father": "John",
@@ -174,12 +174,12 @@ describe("Testing Format Input", function() {
 
     describe("on DelItem Input", function() {
         var request = {};
-        
+
         var hashKey = {"UserId" : "raymolin"};
         var hashRangeKey = {"UserId" : "raymolin",
                             "HighScore" : 200};
-        
-        beforeEach(function () {
+
+        beforeEach(function() {
             request.params = {};
             request.params.TableName = "Users";
             request.operation = "deleteItem";
@@ -228,7 +228,7 @@ describe("Testing Format Input", function() {
 
     describe("on UpdateItem Input", function() {
         var request = {};
-        
+
         var hashKey = {"GameNum" : 1};
         var update = {"Players": {
                         "Action": "PUT",
@@ -237,15 +237,15 @@ describe("Testing Format Input", function() {
                                 {"GameNum":
                                   {"N": "1"}},
                                "AttributeUpdates":
-                                {"Players": 
+                                {"Players":
                                   {"Action": "PUT",
-                                    "Value": 
+                                    "Value":
                                      {"L" : [
                                        {"S": "P1"},
                                        {"S": "P2"}]}}},
                                "TableName": "Games"};
 
-        beforeEach(function () {
+        beforeEach(function() {
             request.params = {};
             request.params.TableName = "Games";
             request.params.Key = hashKey;
@@ -267,7 +267,7 @@ describe("Testing Format Input", function() {
         });
     });
 
-    
+
 
     describe("on BatchWriteItem Input", function() {
         var request = {};
@@ -276,14 +276,14 @@ describe("Testing Format Input", function() {
         request.params.ReturnConsumedCapacity = "NONE";
 
         var gameTable = "Games";
-       
+
         it("with Delete and Put Requests", function() {
-            var delRequest = {"DeleteRequest": 
+            var delRequest = {"DeleteRequest":
                                {"Key":
                                 {"GameId": 1}}};
-            var putRequest = {"PutRequest": 
+            var putRequest = {"PutRequest":
                                 {"Item":
-                                  {"GameId": 2, 
+                                  {"GameId": 2,
                                    "Players": ["P1", "P2"]}}};
 
             request.params.RequestItems = {};
@@ -319,7 +319,7 @@ describe("Testing Format Input", function() {
             request.params.KeyConditions = [new c.DynamoDBCondition("Age", "EQ", 21), new c.DynamoDBCondition("Occupation", "EQ", "Driver")];
             request.params.QueryFilter = new c.DynamoDBCondition("DriverLicense", "NOT_NULL");
 
-            var llRequestParams = {"KeyConditions": 
+            var llRequestParams = {"KeyConditions":
                                      {"Age":
                                       {"AttributeValueList": [{"N": "21"}],
                                        "ComparisonOperator": "EQ"},
@@ -331,7 +331,7 @@ describe("Testing Format Input", function() {
                                        {"ComparisonOperator": "NOT_NULL"}},
                                    "TableName": "Users",
                                    "IndexName": "Age-index"};
-            
+
             f.formatInput(request);
             assert.deepEqual(request.params, llRequestParams);
         });
@@ -404,7 +404,7 @@ describe("Testing Format Output", function() {
                                        21};
 
             response.data = {};
-            response.data.Item = {"UserId": 
+            response.data.Item = {"UserId":
                                     {"S": "raymolin"},
                                   "Age":
                                     {"N": "21"}};
@@ -432,13 +432,13 @@ describe("Testing Format Output", function() {
             mlResponseData.ConsumedCapacity = {};
             mlResponseData.ConsumedCapacity.TableName = "Users";
             mlResponseData.ConsumedCapacity.CapacityUnits = "10";
-           
+
             f.formatOutput(response);
             assert.deepEqual(response.data, mlResponseData);
         });
 
         it("with Array prototype chain pollution", function() {
-            mlResponseData.Item.Friends = {Gaming: 
+            mlResponseData.Item.Friends = {Gaming:
                                             ["Abe", "Ally"]};
             response.data.Item.Friends = {M: {
                                             Gaming:
@@ -462,7 +462,7 @@ describe("Testing Format Output", function() {
                                         ["joz", "vijayra"],
                                      "Project":
                                         null};
-        
+
         beforeEach(function() {
             response.data = {};
             response.data.Attributes = {"UserId":
@@ -510,16 +510,16 @@ describe("Testing Format Output", function() {
         beforeEach(function() {
             response.data = {};
             response.data.Responses = {"Users":
-                                        [{"UserId": 
+                                        [{"UserId":
                                              {"S": "raymolin"},
-                                          "Age": 
+                                          "Age":
                                              {"N": "21"}},
                                          {"UserId":
                                              {"S": "joz"},
                                           "Age":
                                              {"N": "21"}}],
                                        "Games":
-                                         [{"GameId": 
+                                         [{"GameId":
                                                {"N": "1"},
                                            "Players":
                                                {"L": [{"S": "raymolin"},
@@ -598,7 +598,7 @@ describe("Testing Format Output", function() {
                                                     {"UserId": "raymolin"}}}]};
 
             f.formatOutput(response);
-            assert.deepEqual(response.data, mlResponseData);                       
+            assert.deepEqual(response.data, mlResponseData);
         });
     });
 
@@ -616,7 +616,7 @@ describe("Testing Format Output", function() {
                                     {"S": "raymolin"}},
                                   {"UserId":
                                     {"S": "martin"}},
-                                  {"UserId": 
+                                  {"UserId":
                                     {"S": "john"}}];
             response.data.Count = "3";
         });

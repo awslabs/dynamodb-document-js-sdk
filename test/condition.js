@@ -7,7 +7,7 @@ describe("Testing Condition", function() {
     var binOpCond = new cond.DynamoDBCondition("Age", "GE", 18);
     var btwnCond = new cond.DynamoDBCondition("Weight", "BETWEEN", 150, 170);
 
-    describe("Testing Condition.[key, operator, val1, val2]", function () {
+    describe("Testing Condition.[key, operator, val1, val2]", function() {
         var key = "Weight";
         var op = "BETWEEN";
         var val1 = 150;
