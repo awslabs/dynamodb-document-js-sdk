@@ -10,6 +10,11 @@ Note: Condition Object serves to simplify previous api (NOT new expressions)
 
 ## Getting Started
 
+### Install
+```sh
+$ npm install dynamodb-doc --save
+```
+
 In order to instantiate the client, you still need the [AWS JS SDK](https://github.com/aws/aws-sdk-js) to store your region/credentials.
 
 ``` javascript
