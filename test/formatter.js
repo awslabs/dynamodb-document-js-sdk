@@ -258,6 +258,26 @@ describe("Testing Format Input", function() {
             assert.deepEqual(request.params, llRequestParams);
         });
 
+        it("with DELETE Condition and empty Value", function() {
+            var newUpdate = {"Cache": {
+                                "Action": "DELETE"}};
+            var newParams = {};
+            newParams.TableName = "Games";
+            newParams.Key = hashKey;
+            newParams.AttributeUpdates = newUpdate;
+
+            var newllRequestParams = {};
+            newllRequestParams.Key = llRequestParams.Key;
+            newllRequestParams.TableName = "Games";
+            newllRequestParams.AttributeUpdates = newUpdate;
+
+            var newRequest = {params: newParams,
+                              operation: "updateItem"};
+
+            f.formatInput(newRequest);
+            assert.deepEqual(newRequest.params, newllRequestParams);
+        });
+
         it("with simple condition", function() {
             request.params.Expected = new c.DynamoDBCondition("Players", "NULL");
             llRequestParams.Expected = {"Players":
@@ -265,6 +285,7 @@ describe("Testing Format Input", function() {
             f.formatInput(request);
             assert.deepEqual(request.params, llRequestParams);
         });
+
     });
 
     
