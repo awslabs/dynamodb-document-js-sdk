@@ -5,6 +5,12 @@ var datatypes = require("../lib/datatypes").DynamoDBDatatype;
 var t = new datatypes();
 
 describe("Testing DataTypes", function() {
+    describe('Testing undefined dataType', function() {
+        it("should be undefined", function() {
+            assert.equal("undefined", typeof(t.formatDataType(undefined)));
+        });
+    });
+
      describe("Testing Bin to Str Conversion", function() {
 
          it("with some alphanumeric string in Buffer", function() {
@@ -114,4 +120,5 @@ describe("Testing DataTypes", function() {
             expect(binSet.format()).to.eql({BS : [new Buffer("hello"), new Buffer("world")]});
         });
     });
+
 });
