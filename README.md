@@ -1,5 +1,7 @@
 # DynamoDB Document SDK
 
+**NOTE:** As of September 10, 2015, this version of the Document SDK will be deprecated in favor of the [AWS.DynamoDB.DocumentClient][1] in the standard [AWS JS SDK][2].  This repository will continued to be hosted, but not maintained outside of bug reports.  In addition, discussion and request for guidance should be directed at the [AWS JS SDK][2].  Here's how you can get started with [the new client!][3]
+
 This SDK abstracts away the typing of attribute values in the low level SDK in order to provide a simpler developing experience.
 JS datatypes like `string` or `number` can be passed directly into DynamoDB requests and the wrapping will be handled for you; similarly for responses, datatypes will be unwrapped.
 
@@ -199,3 +201,6 @@ params.ExpressionAttributeValues = {":x" : 20,
 
 docClient.updateItem(params, pfunc);
 ```
+[1]: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html
+[2]: https://github.com/aws/aws-sdk-js
+[3]: http://blogs.aws.amazon.com/javascript/post/Tx1OVH5LUZAFC6T/Announcing-the-Amazon-DynamoDB-Document-Client-in-the-AWS-SDK-for-JavaScript
