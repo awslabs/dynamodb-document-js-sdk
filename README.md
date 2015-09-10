@@ -1,6 +1,6 @@
 # DynamoDB Document SDK
 
-**NOTE:** As of September 10, 2015, this version of the Document SDK will be deprecated in favor of the [AWS.DynamoDB.DocumentClient][1] in the official [AWS JS SDK][2].  This repository will continued to be hosted, but not maintained outside of bug reports.  In addition, discussion and request for guidance should be directed at the [AWS JS SDK][2].  Here's how you can get started with [the new client!][3]
+**NOTE:** As of September 10, 2015, this version of the Document SDK will be deprecated in favor of the [AWS.DynamoDB.DocumentClient][1] in the [official AWS SDK for JavaScript][2].  This repository will continued to be hosted, but not maintained outside of bug reports.  In addition, discussion and request for guidance should be directed at the [official AWS SDK for JavaScript][2].  Here's how you can get started with [the new client!][3]
 
 ***
 
