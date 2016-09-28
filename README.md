@@ -184,6 +184,46 @@ ScannedCount: 3}
 */
 ```
 
+## BacthWriteItem:
+
+```javascript
+var params = {
+    RequestItems: {
+        Table: [{
+            PutRequest: {
+                Item: { 
+                    HouseId   : "123 amzn way",
+                    YearBuilt : 2001,
+                    Price     : 450000
+                }
+            },
+            DeleteRequest: {
+                Key: {     
+                    YearBuilt : 2001,
+                }
+            }
+        }],
+        Table2: [{
+            PutRequest: {
+                Item: { 
+                    Since   : 2002,
+                    Location : "Brazil"
+                }
+            },
+            DeleteRequest: {
+                Key: {     
+                    Since : 2005,
+                }
+            }
+        }],
+    },
+    ReturnConsumedCapacity: 'INDEXES | TOTAL | NONE',
+    ReturnItemCollectionMetrics: 'SIZE | NONE'
+};
+
+docClient.batchWriteItem(params, callback);
+```
+
 ## Expressions (NEW!!):
 
 ``` javascript
