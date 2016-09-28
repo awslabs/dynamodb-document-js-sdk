@@ -102,7 +102,7 @@ describe("Testing DataTypes", function() {
 
     });
 
-    describe('Testing createSet #format', function () {
+    describe('Testing createSet #format', function() {
         it("as a StringSet.", function() {
             var stringSet = t.createSet(["a", "b", "c"], "S");
             // nodejs built in assert deep equals does not do strict equality
