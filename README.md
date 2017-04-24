@@ -106,7 +106,7 @@ docClient.putItem(params, pfunc);
 
 params = {};
 params.TableName = "Users";
-params.Key = {UserId : "John"}
+params.Key = {UserId : "John"};
 
 docClient.getItem(params, pfunc); 
 
