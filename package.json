@@ -15,7 +15,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^1.21.0",
-    "uglify-js": "2.*"
+    "uglify-js": ">=2.6.0"
   },
   "dependencies": {
     "aws-sdk": "^2.0.19"
