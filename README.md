@@ -34,7 +34,7 @@ Alternatively if you already have the existing DynamoDB Client, you can pass it 
 
 ``` javascript
 // assumes AWS.config is set up already
-var awsClient = AWS.DynamoDB();
+var awsClient = new AWS.DynamoDB();
 var docClient = new DOC.DynamoDB(awsClient);
 ```
 
